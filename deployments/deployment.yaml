@@ -6,6 +6,8 @@ metadata:
         app: nginx
         tier: frontend
 spec:
+  strategy:
+    type: RollingUpdate
   replicas: 3
   selector:
     matchLabels:
