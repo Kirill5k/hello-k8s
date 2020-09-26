@@ -3,11 +3,11 @@ kind: Service
 metadata:
     name: myapp-service
 spec:
-    type: NodePort
+    type: LoadBalancer
     ports:
-      - targetPort: 80
-        port: 80
-        nodePort: 30008 # must be in range 30000 - 32767
+        - targetPort: 80
+          port: 80
+          nodePort: 30008
     selector:
         type: frontend
         app: nginx-app
