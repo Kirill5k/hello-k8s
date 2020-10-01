@@ -4,3 +4,4 @@ metadata:
   name: nginx-config
 data:
   ENVRIONMENT: dev
+  USER_NAME: user
