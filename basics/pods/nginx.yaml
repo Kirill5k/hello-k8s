@@ -10,9 +10,14 @@ spec:
     - name: nginx
       image: nginx
       ports:
-          - containerPort: 8080
+        - containerPort: 8080
+      securityContext:
+        runAsUser: user
+        capabilities:
+          add:
+            - MAX_ADMIN
       envFrom:
-          - configMapRef:
-                name: nginx-config
-          - secretRef:
-                name: nginx-secret
+        - configMapRef:
+            name: nginx-config
+        - secretRef:
+            name: nginx-secret
