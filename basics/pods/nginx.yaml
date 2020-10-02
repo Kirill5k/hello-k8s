@@ -12,10 +12,9 @@ spec:
       ports:
         - containerPort: 8080
       securityContext:
-        runAsUser: user
+        runAsUser: 1000
         capabilities:
-          add:
-            - MAX_ADMIN
+          add: ["MAX_ADMIN"]
       envFrom:
         - configMapRef:
             name: nginx-config
