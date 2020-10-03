@@ -32,3 +32,5 @@ spec:
       operator: "Equal"
       value: "blue"
       effect: "NoSchedule"
+  nodeSelector:
+      size: Large # node label
