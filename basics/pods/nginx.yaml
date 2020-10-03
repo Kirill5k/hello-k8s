@@ -34,3 +34,12 @@ spec:
       effect: "NoSchedule"
   nodeSelector:
       size: Large # node label
+  affinity:
+      nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+              nodeSelectorTerms:
+                - matchExpressions:
+                    - key: size
+                      operator: In
+                      values:
+                        - "Large"
