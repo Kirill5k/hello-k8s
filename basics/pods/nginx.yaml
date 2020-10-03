@@ -27,3 +27,8 @@ spec:
         limits:
           memory: 2Gi
           cpu: 2
+  tolerations:
+    - key: "app"
+      operator: "Equal"
+      value: "blue"
+      effect: "NoSchedule"
