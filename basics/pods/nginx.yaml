@@ -36,6 +36,14 @@ spec:
         failureThreshold: 3
         successThreshold: 1
         timeoutSeconds: 10
+      livenessProbe:
+        httpGet:
+          path: /health/status
+          port: 8080
+        initialDelaySeconds: 60
+        failureThreshold: 3
+        successThreshold: 1
+        timeoutSeconds: 10
     - name: logging-agent
       image: logging-agent
   tolerations:
