@@ -3,10 +3,10 @@ kind: Service
 metadata:
   name: myapp-service
 spec:
-  type: ClusterIP # groups all pods under single ip
+  type: ClusterIP # groups all pods under single ip / default type
   ports:
     - targetPort: 80
-      port: 80
+      port: 80 # service port
   selector:
     type: frontend
     app: nginx-app
