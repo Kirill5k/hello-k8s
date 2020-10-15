@@ -10,3 +10,5 @@ spec:
   awsElasticBlockStore:
     volumeID: id-1
     fsType: ext1
+#  hostPath:
+#    path: /tmp/dir
