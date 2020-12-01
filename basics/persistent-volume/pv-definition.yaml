@@ -3,10 +3,12 @@ kind: PersistentVolume
 metadata:
   name: vol1
 spec:
-  accessModes:
-  - ReadWriteOnce
   capacity:
     storage: 1Gi
+  accessModes:
+  - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Recycle
+  storageClassName: ""
   awsElasticBlockStore:
     volumeID: id-1
     fsType: ext1

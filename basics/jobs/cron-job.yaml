@@ -6,12 +6,13 @@ spec:
   schedule: "*/1 * * * *"
   jobTemplate:
     spec:
+      backoffLimit: 10
       completions: 3
       parallelism: 3
       template:
         spec:
           restartPolicy: Never
           containers:
-          - name: math-add
-            image: ubuntu
-            command: ["expr", "21", "*", "2"]
+            - name: math-add
+              image: ubuntu
+              command: ["expr", "21", "*", "2" ]

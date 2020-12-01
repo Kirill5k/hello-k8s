@@ -10,58 +10,58 @@ metadata:
 spec:
   restartPolicy: Always
   containers:
-    - name: nginx
-      image: nginx
-      ports:
-        - containerPort: 8080
-      securityContext:
-        runAsUser: 1000
-        capabilities:
-          add: ["MAX_ADMIN"]
-      envFrom:
-        - configMapRef:
-            name: nginx-config
-        - secretRef:
-            name: nginx-secret
-      resources:
-        requests:
-          memory: "1Gi"
-          cpu: "1"
-        limits:
-          memory: "2Gi"
-          cpu: "2"
-      readinessProbe:
-        httpGet:
-          path: /health/status
-          port: 8080
-        initialDelaySeconds: 30
-        periodSeconds: 10
-        failureThreshold: 3
-        successThreshold: 1
-        timeoutSeconds: 10
-      livenessProbe:
-        httpGet:
-          path: /health/status
-          port: 8080
-        initialDelaySeconds: 60
-        failureThreshold: 3
-        successThreshold: 1
-        timeoutSeconds: 10
-    - name: logging-agent
-      image: logging-agent
+  - name: nginx
+    image: nginx
+    ports:
+    - containerPort: 8080
+    securityContext:
+      runAsUser: 1000
+      capabilities:
+        add: ["MAX_ADMIN"]
+    envFrom:
+    - configMapRef:
+        name: nginx-config
+    - secretRef:
+        name: nginx-secret
+    resources:
+      requests:
+        memory: "1Gi"
+        cpu: "1"
+      limits:
+        memory: "2Gi"
+        cpu: "2"
+    readinessProbe:
+      httpGet:
+        path: /health/status
+        port: 8080
+      initialDelaySeconds: 30
+      periodSeconds: 10
+      failureThreshold: 3
+      successThreshold: 1
+      timeoutSeconds: 10
+    livenessProbe:
+      httpGet:
+        path: /health/status
+        port: 8080
+      initialDelaySeconds: 60
+      failureThreshold: 3
+      successThreshold: 1
+      timeoutSeconds: 10
+  - name: logging-agent
+    image: logging-agent
   tolerations:
-    - key: "app"
-      operator: "Equal"
-      value: "blue"
-      effect: "NoSchedule"
+  - key: "app"
+    operator: "Equal"
+    value: "blue"
+    effect: "NoSchedule"
   nodeSelector:
-      size: Large # node label
+    size: Large # node label
   affinity:
-      nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-              nodeSelectorTerms:
-                - matchExpressions: # same as nodeSelector
-                    - key: size
-                      operator: In
-                      values:
-                        - "Large"
+    nodeAffinity:
+     requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+      - matchExpressions: # same as nodeSelector
+        - key: size
+          operator: In
+          values:
+          - "Large"

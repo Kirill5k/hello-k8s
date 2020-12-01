@@ -1,10 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: myapp-deployment
-    labels:
-        app: nginx
-        tier: frontend
+  name: myapp-deployment
+  labels:
+    app: nginx
+    tier: frontend
 spec:
   strategy:
     type: RollingUpdate
@@ -14,13 +14,13 @@ spec:
   replicas: 3
   selector:
     matchLabels:
-        tier: frontend
+      tier: frontend
   template:
-      metadata:
-        name: nginx-1
-        labels:
-          tier: frontend
-      spec:
-        containers:
-          - name: nginx
-            image: nginx
+    metadata:
+      name: nginx-1
+      labels:
+        tier: frontend
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
