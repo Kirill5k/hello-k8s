@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-1
+  labels:
+    app: multi-contianer
+spec:
+  restartPolicy: Always
+  volumes:
+    - name: log-vol
+      emptyDir: {}
+  containers:
+    - name: busybox
+      image: busybox
+      command:
+        - /bin/sh
+      args:
+        - -c
+        - "while true; do date >> /var/logs/info.log; sleep 10;done"
+      volumeMounts:
+        - mountPath: /var/logs
+          name: log-vol
+    - name: logging-agent
+      image: alpine
+      command:
+        - cat
+      args:
+        - /var/logs/info.log
+      volumeMounts:
+        - mountPath: /var/logs
+          name: log-vol
+

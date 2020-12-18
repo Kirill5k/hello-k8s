@@ -6,6 +6,7 @@ spec:
   schedule: "*/1 * * * *"
   jobTemplate:
     spec:
+      activeDeadlineSeconds: 25
       backoffLimit: 10
       completions: 3
       parallelism: 3
